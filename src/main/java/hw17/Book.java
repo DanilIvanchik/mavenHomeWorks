@@ -4,22 +4,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 
 public class Book {
-    private String title;
     private String author;
+    private String genre;
 
     public Book() {}
 
-    public Book(String title, String author) {
-        this.title = title;
+    public Book(String author, String genre) {
         this.author = author;
+        this.genre = genre;
     }
 
-    public String getTitle() {
-        return title;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setGenre(String title) {
+        this.genre = genre;
     }
 
     public String getAuthor() {

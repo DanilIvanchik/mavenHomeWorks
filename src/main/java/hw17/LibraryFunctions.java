@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class LibraryFunctions {
 
-    Map<String, String> list;
+    Map<String, Book> list;
 
-    public LibraryFunctions (Map<String, String> listOfBooks){
+    public LibraryFunctions (Map<String, Book> listOfBooks){
         this.list = listOfBooks;
     }
 
@@ -20,48 +20,55 @@ public class LibraryFunctions {
 
 
 
-    public Map<String, String> add(String book, String author, Map<String, String> list){
-        list.put(book, author);
+    public Map<String, Book> add(Book bookInfo, String book, Map<String,Book> list){
+        list.put(book, bookInfo);
         return list;
     }
 
-    public Map<String, String> delete (String book, Map<String, String> list){
+    public Map<String, Book> delete (String book, Map<String, Book> list){
         list.remove(book);
         return list;
     }
 
-    public void toJson(File path, Map<String, String> books) throws IOException {
+    public void toJson(File path, Map<String, Book> books) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(path, books);
     }
 
-    public Map<String, String> fromJson(File path) throws IOException {
+    public Map<String, Book> fromJson(File path) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, String> list = objectMapper.readValue(path, HashMap.class);
+        Map<String, Book> list = objectMapper.readValue(path, HashMap.class);
         return list;
     }
 
-    public Map<String, String> whichFunction(LibraryFunctions host, Map<String, String> listOfBooks){
+    public Map<String, Book> whichFunction(LibraryFunctions host, Map<String, Book> listOfBooks){
         System.out.println("Choose 1) add or 2) remove 3) Show");
 
         try {
             int number = scan.nextInt();
 
-            if (number == 1) {
-                System.out.println("Which book do you want to add?");
-                String bookName = scan.next();
-                System.out.println("Author?");
-                String author = scan.next();
-                listOfBooks = host.add(bookName, author, listOfBooks);
-            } else if (number == 2) {
-                System.out.println("Which book do you want to remove?");
-                String book = scan.next();
-                listOfBooks = host.delete(book, listOfBooks);
-            } else if (number == 3) {
-                System.out.println(listOfBooks);
-            } else {
-                System.out.println("Error, retry");
-                whichFunction(host, listOfBooks);
+            switch (number){
+                case 1:
+                    System.out.println("Which book do you want to add?");
+                    String bookName = scan.next();
+                    System.out.println("Author?");
+                    String author = scan.next();
+                    System.out.println("Genre?");
+                    String genre = scan.next();
+                    listOfBooks = host.add(new Book(author, genre), bookName, listOfBooks);
+                    break;
+                case 2:
+                    System.out.println("Which book do you want to remove?");
+                    String bookRemove = scan.next();
+                    listOfBooks = host.delete(bookRemove, listOfBooks);
+                    break;
+                case 3:
+                    System.out.println(listOfBooks);
+                    break;
+                default:
+                    System.out.println("Error, retry");
+                    whichFunction(host, listOfBooks);
+                    break;
             }
 
         } catch (Exception e) {
@@ -72,11 +79,15 @@ public class LibraryFunctions {
                 System.out.println("Again? 1 - yes, 2 - no");
                 int number = scan.nextInt();
 
-                if (number == 1){
-                    whichFunction(host, listOfBooks);
-                }else {
-                    System.out.println("OK");
+                switch (number){
+                    case 1:
+                        whichFunction(host, listOfBooks);
+                        break;
+                    case 2:
+                        System.out.println("OK");
+                        break;
                 }
+
             }catch (Exception e){
                 System.out.println("Error, retry");
                 whichFunction(host, listOfBooks);

@@ -9,7 +9,7 @@ public class Library {
     public static void main(String[] args) {
 
         File path = new File("books.json");
-        Map<String, String> listOfBooks = new HashMap<>();
+        Map<String, Book> listOfBooks = new HashMap<>();
         LibraryFunctions host = new LibraryFunctions(listOfBooks);
 
         try {

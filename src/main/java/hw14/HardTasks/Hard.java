@@ -1,4 +1,4 @@
-package HardTasks;
+package hw14.HardTasks;
 
 import java.util.*;
 

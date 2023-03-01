@@ -1,5 +1,5 @@
 package HardTests;
-import HardTasks.Hard;
+import hw14.HardTasks.Hard;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.Assert.assertEquals;

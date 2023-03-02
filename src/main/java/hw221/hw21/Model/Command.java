@@ -1,10 +1,10 @@
 package hw221.hw21.Model;
 
 public enum Command {
-    SHOW("show", " - shows the title of the book in the library;"),
-    ADD("add", " - adds a book to the library;"),
-    DELETE("delete", " - deletes the selected book from the library;"),
-    EXIT("exit", " - exit from the program;");
+    SHOW("Show", " - shows the title of the book in the library;"),
+    ADD("Add", " - adds a book to the library;"),
+    DELETE("Delete", " - deletes the selected book from the library;"),
+    EXIT("Eit", " - exit from the program;");
 
     String command;
     String description;

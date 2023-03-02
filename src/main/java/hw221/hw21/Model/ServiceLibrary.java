@@ -30,7 +30,7 @@ public class ServiceLibrary implements CheckAble, ConnectDAO{
         String command = "";
         while (!check(command)) {
             Command.printDescription();
-            command = scanner.nextLine().toLowerCase();
+            command = scanner.nextLine();
             mapCommand.getOrDefault(command, scanner1 -> System.out.println(Output.REPEAT)).accept(scanner);
         }
     }

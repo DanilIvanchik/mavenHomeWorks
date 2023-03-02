@@ -1,4 +1,4 @@
-package hw221.hw21.Model;
+package hw21;
 
 import lombok.Builder;
 import lombok.Data;

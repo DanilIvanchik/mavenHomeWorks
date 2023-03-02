@@ -1,4 +1,4 @@
-package hw221.hw21.Model;
+package hw21;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -17,7 +17,10 @@ public class ServiceLibrary implements CheckAble, ConnectDAO{
     Scanner scanner = new Scanner(System.in);
 
     static {
-        commandInitializer();
+        mapCommand.put(Command.SHOW.command, scanner -> commandService.show());
+        mapCommand.put(Command.ADD.command, scanner -> commandService.add());
+        mapCommand.put(Command.DELETE.command, scanner -> commandService.delete());
+        mapCommand.put(Command.EXIT.command, scanner -> commandService.exit());
     }
 
     public void startLibrary() {
@@ -35,16 +38,9 @@ public class ServiceLibrary implements CheckAble, ConnectDAO{
         }
     }
 
-    private static void commandInitializer() {
-        mapCommand.put(Command.SHOW.command, scanner -> commandService.show());
-        mapCommand.put(Command.ADD.command, scanner -> commandService.add());
-        mapCommand.put(Command.DELETE.command, scanner -> commandService.delete());
-        mapCommand.put(Command.EXIT.command, scanner -> commandService.exit());
-    }
-
     @Override
     public boolean check(String line) {
-        return line.equals("exit");
+        return line.equals("Exit");
     }
 
 
@@ -52,8 +48,7 @@ public class ServiceLibrary implements CheckAble, ConnectDAO{
     public Connection myConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection(
-                    URL, user, password);
+            connect = DriverManager.getConnection(URL, user, password);
         } catch (Exception e) {
             System.out.println(e);
         }

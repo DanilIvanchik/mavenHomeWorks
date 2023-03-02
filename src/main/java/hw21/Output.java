@@ -1,4 +1,4 @@
-package hw221.hw21.Model;
+package hw21;
 
 public enum Output {
     NAME("Enter name of book: "),
@@ -9,7 +9,8 @@ public enum Output {
     REPEAT("Repeat input"),
     ID("Enter id number"),
     CONNECT_SUCCESS("Connect to DB was successful"),
-    NO_CONNECT("No connection to DB");
+    NO_CONNECT("No connection to DB"),
+    SHOW("Here is your library");
 
     public String description;
 

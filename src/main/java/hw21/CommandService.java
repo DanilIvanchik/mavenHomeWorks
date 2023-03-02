@@ -1,4 +1,4 @@
-package hw221.hw21.Model;
+package hw21;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +26,7 @@ public class CommandService extends ServiceLibrary {
             e.printStackTrace();
         }
         System.out.println(Output.ADD.description);
+        show();
     }
 
     public void delete() {
@@ -38,6 +39,8 @@ public class CommandService extends ServiceLibrary {
             e.printStackTrace();
         }
         System.out.println(Output.DELETE.description);
+        show();
+
     }
 
     public void exit() {
@@ -49,6 +52,7 @@ public class CommandService extends ServiceLibrary {
     }
 
     public void show() {
+        System.out.println(Output.SHOW.description);
         try {
             Statement stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery("select * from library");

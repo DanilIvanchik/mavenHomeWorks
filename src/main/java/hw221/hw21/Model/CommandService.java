@@ -37,6 +37,7 @@ public class CommandService extends ServiceLibrary {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(Output.DELETE.description);
     }
 
     public void exit() {

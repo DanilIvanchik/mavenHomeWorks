@@ -33,7 +33,7 @@ public class CommandService extends ServiceLibrary {
         int row = scanner.nextInt();
         try {
             Statement stmt = connect.createStatement();
-            stmt.executeUpdate("DELETE FROM library WHERE id = " + String.valueOf(row));
+            stmt.executeUpdate("DELETE FROM library WHERE book_id = " + String.valueOf(row));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class CommandService extends ServiceLibrary {
     public void show() {
         try {
             Statement stmt = connect.createStatement();
-            ResultSet rs = stmt.executeQuery("select * library");
+            ResultSet rs = stmt.executeQuery("select * from library");
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + "  "
                         + rs.getString(2) + " " + rs.getString(3));

@@ -20,26 +20,18 @@ public class ServiceLibrary implements CheckAble, ConnectDAO{
         commandInitializer();
     }
 
-    public static void main(String[] args) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/hw";
-            Connection conn = DriverManager.getConnection(url, "root", "1");
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM library");
-            while (rs.next()) {
-                // Получаем значения столбцов по их именам
-                String title = rs.getString("title");
-                String author = rs.getString("author");
-
-                // Выводим значения на экран
-                System.out.println("title: " + title + ", author: " + author );
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void startLibrary() {
+        myConnection();
+        if (!connectionStatus()) {
+            System.out.println(Output.CONNECT_SUCCESS.description);
+        } else {
+            System.out.println(Output.NO_CONNECT.description);
+        }
+        String command = "";
+        while (!check(command)) {
+            Command.printDescription();
+            command = scanner.nextLine().toLowerCase();
+            mapCommand.getOrDefault(command, scanner1 -> System.out.println(Output.REPEAT)).accept(scanner);
         }
     }
 
@@ -66,6 +58,22 @@ public class ServiceLibrary implements CheckAble, ConnectDAO{
             System.out.println(e);
         }
         return connect;
+    }
+
+    public static void main(String[] args) {
+        ServiceLibrary start = new ServiceLibrary();
+        start.startLibrary();
+    }
+
+    public static boolean connectionStatus() {
+        boolean status = false;
+        try {
+            status = connect.isClosed();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return status;
+
     }
 
 }

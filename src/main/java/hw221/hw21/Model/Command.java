@@ -1,16 +1,16 @@
 package hw221.hw21.Model;
 
 public enum Command {
-    SHOW("Show", "\t Shows the title of the book in the library"),
-    ADD("Add", "\t Adds a book to the library"),
-    DELETE("Delete", "\t Deletes the selected book from the library"),
-    EXIT("Exit", "\t Exit");
+    SHOW("show", " - shows the title of the book in the library;"),
+    ADD("add", " - adds a book to the library;"),
+    DELETE("delete", " - deletes the selected book from the library;"),
+    EXIT("exit", " - exit from the program;");
 
     String command;
     String description;
 
-    Command (String function, String description){
-        this.command = function;
+    Command (String command, String description){
+        this.command = command;
         this.description = description;
     }
 

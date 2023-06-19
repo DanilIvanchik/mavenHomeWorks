@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @Builder
 public class Book extends Library {
-    String author;
-    String title;
+    private String author;
+    private String title;
 }
